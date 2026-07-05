@@ -1,43 +1,48 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import "../App.css";
 
 function Navbar() {
+  const navigate = useNavigate();
+
+  const { user, logout } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logout();
+    alert("Logged out successfully");
+    navigate("/login");
+  };
+
   return (
-    <nav
-      style={{
-        padding: "15px",
-        background: "#333",
-        display: "flex",
-        gap: "20px",
-      }}
-    >
-      <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-        Home
-      </Link>
+  <div className="navbar">
+    <h2 className="logo">Restaurant</h2>
 
-      <Link to="/login" style={{ color: "white", textDecoration: "none" }}>
-        Login
-      </Link>
+    <div className="nav-links">
+      <Link to="/">Home</Link>
 
-      <Link to="/register" style={{ color: "white", textDecoration: "none" }}>
-        Register
-      </Link>
+      {!user && (
+        <>
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
+        </>
+      )}
 
-      <Link to="/book" style={{ color: "white", textDecoration: "none" }}>
-        Book Table
-      </Link>
+      {user && (
+        <>
+          <Link to="/book">Book</Link>
+          <Link to="/my-reservations">My Reservations</Link>
 
-      <Link
-        to="/my-reservations"
-        style={{ color: "white", textDecoration: "none" }}
-      >
-        My Reservations
-      </Link>
+          {user.role === "admin" && (
+            <Link to="/admin">Admin</Link>
+          )}
 
-      <Link to="/admin" style={{ color: "white", textDecoration: "none" }}>
-        Admin
-      </Link>
-    </nav>
-  );
+          <button onClick={handleLogout}>Logout</button>
+        </>
+      )}
+    </div>
+  </div>
+);
 }
 
 export default Navbar;

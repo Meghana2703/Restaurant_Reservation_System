@@ -1,0 +1,110 @@
+.admin-container {
+  padding: 30px;
+  background: #f4f6f9;
+  min-height: 100vh;
+}
+
+.admin-title {
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.stats-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  flex: 1;
+  min-width: 220px;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.total {
+  background: #4caf50;
+}
+
+.booked {
+  background: #2196f3;
+}
+
+.cancelled {
+  background: #f44336;
+}
+
+.search-box {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 25px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+}
+
+.search-box:focus {
+  border-color: #2196f3;
+}
+
+.reservation-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.status-booked {
+  color: green;
+  font-weight: bold;
+}
+
+.status-cancelled {
+  color: red;
+  font-weight: bold;
+}
+
+.btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 10px;
+  color: white;
+}
+
+.btn-edit {
+  background: #2196f3;
+}
+
+.btn-save {
+  background: #4caf50;
+}
+
+.btn-cancel {
+  background: #f44336;
+}
+
+.btn-edit:hover,
+.btn-save:hover,
+.btn-cancel:hover {
+  opacity: 0.9;
+}
+
+.btn:disabled {
+  background: gray;
+  cursor: not-allowed;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

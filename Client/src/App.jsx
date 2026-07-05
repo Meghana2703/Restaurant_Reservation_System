@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import BookTable from "./pages/BookTable";
 import MyReservation from "./pages/MyReservation";
 import AdminDashboard from "./pages/AdminDashboard";
+import "./App.css";
 
 function App() {
   return (

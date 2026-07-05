@@ -115,10 +115,118 @@ const getAllReservations = async (req, res) => {
     });
   }
 };
+// Admin Cancel Any Reservation
+const adminCancelReservation = async (req, res) => {
+  try {
+    const reservation = await Reservation.findById(req.params.id);
+
+    if (!reservation) {
+      return res.status(404).json({
+        message: "Reservation not found",
+      });
+    }
+
+    reservation.status = "Cancelled";
+
+    await reservation.save();
+
+    res.json({
+      message: "Reservation cancelled successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+// Admin Update Reservation
+const adminUpdateReservation = async (req, res) => {
+  try {
+    const { reservationDate, timeSlot, numberOfGuests } = req.body;
+
+    const reservation = await Reservation.findById(req.params.id);
+
+    if (!reservation) {
+      return res.status(404).json({
+        message: "Reservation not found",
+      });
+    }
+
+    reservation.reservationDate = reservationDate;
+    reservation.timeSlot = timeSlot;
+    reservation.numberOfGuests = numberOfGuests;
+
+    await reservation.save();
+
+    res.json({
+      message: "Reservation updated successfully",
+      reservation,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+// Admin Dashboard Statistics
+const getDashboardStats = async (req, res) => {
+  try {
+    const totalReservations = await Reservation.countDocuments();
+
+    const bookedReservations = await Reservation.countDocuments({
+      status: "Booked",
+    });
+
+    const cancelledReservations = await Reservation.countDocuments({
+      status: "Cancelled",
+    });
+
+    res.json({
+      totalReservations,
+      bookedReservations,
+      cancelledReservations,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+const getReservationsByDate = async (req, res) => {
+  try {
+    const { date } = req.params;
+
+    const start = new Date(date);
+    start.setHours(0, 0, 0, 0);
+
+    const end = new Date(date);
+    end.setHours(23, 59, 59, 999);
+
+    const reservations = await Reservation.find({
+      reservationDate: {
+        $gte: start,
+        $lte: end,
+      },
+    })
+      .populate("user", "name email")
+      .populate("table", "tableNumber");
+
+    res.status(200).json(reservations);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
 
 module.exports = {
   createReservation,
   getMyReservations,
   cancelReservation,
+  getDashboardStats,
+  adminUpdateReservation,
   getAllReservations,
+  adminCancelReservation,
+  getReservationsByDate,
 };
+

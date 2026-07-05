@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import "./Login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,15 +27,22 @@ function Login() {
       const data = await response.json();
 
       if (response.ok) {
-        alert("Login Successful");
-
-        console.log(data);
-
-        // Save token and user details
+        // ✅ Save data
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
+
+        // ✅ Update context
+        login(data.user);
+
+        console.log("Saved Token:", data.token);
+
+        // ✅ Success message
+        alert("Login Successful");
+
+        // ✅ Redirect
+        navigate("/");
       } else {
-        alert(data.message);
+        alert(data.message || "Invalid credentials");
       }
     } catch (error) {
       console.error(error);
@@ -39,13 +51,12 @@ function Login() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="login-container">
+      <div className="auth-card">
+        <h2>Login</h2>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label>
-          <br />
+        <form onSubmit={handleSubmit}>
+          {/* Email */}
           <input
             type="email"
             placeholder="Enter Email"
@@ -53,13 +64,8 @@ function Login() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </div>
 
-        <br />
-
-        <div>
-          <label>Password</label>
-          <br />
+          {/* Password */}
           <input
             type="password"
             placeholder="Enter Password"
@@ -67,12 +73,11 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </div>
 
-        <br />
-
-        <button type="submit">Login</button>
-      </form>
+          {/* Button */}
+          <button type="submit">Login</button>
+        </form>
+      </div>
     </div>
   );
 }
