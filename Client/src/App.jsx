@@ -6,7 +6,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import BookTable from "./pages/BookTable";
 import MyReservation from "./pages/MyReservation";
-import AdminTemp from "./pages/AdminTemp";
+import AdminDashboard from "./pages/AdminDashboard";
 import "./App.css";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
