@@ -30,7 +30,7 @@ function AdminDashboard() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/reservations/stats",
+      "https://restaurant-reservation-system-3lf4.onrender.com/api/reservations/stats" ,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -53,7 +53,7 @@ function AdminDashboard() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/reservations",
+      "https://restaurant-reservation-system-3lf4.onrender.com/api/reservations",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -75,7 +75,7 @@ function AdminDashboard() {
 
   try {
     const response = await fetch(
-      `http://localhost:5000/api/reservations/date/${date}`,
+      `https://restaurant-reservation-system-3lf4.onrender.com/api/reservations/date/${date}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

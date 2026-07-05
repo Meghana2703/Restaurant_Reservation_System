@@ -12,7 +12,7 @@ function MyReservations() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/reservations/my",
+        "https://restaurant-reservation-system-3lf4.onrender.com/api/reservations/my",
         {
           headers: {
             Authorization: `Bearer ${token}`,
