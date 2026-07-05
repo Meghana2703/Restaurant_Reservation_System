@@ -100,7 +100,7 @@ function AdminDashboard() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/reservations/admin/${id}/cancel`,
+        `https://restaurant-reservation-system-3lf4.onrender.com/api/reservations/admin/${id}/cancel`,
         {
           method: "PUT",
           headers: {
@@ -138,7 +138,7 @@ function AdminDashboard() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/reservations/admin/${id}`,
+       `https://restaurant-reservation-system-3lf4.onrender.com/api/reservations/admin/${id}`,
         {
           method: "PUT",
           headers: {
