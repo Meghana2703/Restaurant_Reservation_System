@@ -1,51 +1,68 @@
-/* Full page center */
-.login-container {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff5e6, #ffe0b2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-/* Card */
-.auth-card {
-    width: 350px;
-    padding: 30px;
-    border-radius: 12px;
-    background: #ffffff10;
-    backdrop-filter: blur(10px);
-    border: 1px solid #ffffff20;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+.login-card {
+  width: 400px;
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,.15);
+  text-align: center;
 }
 
-/* Heading */
-.auth-card h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: white;
+.login-card h1 {
+  color: #d35400;
+  margin-bottom: 10px;
 }
 
-/* Inputs */
-.auth-card input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 6px;
-    border: none;
-    outline: none;
+.login-card p {
+  color: #666;
+  margin-bottom: 25px;
 }
 
-/* Button */
-.auth-card button {
-    width: 100%;
-    padding: 10px;
-    background: #ff6b6b;
-    border: none;
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
+.login-card input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 18px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  box-sizing: border-box;
 }
 
-.auth-card button:hover {
-    background: #ff4c4c;
+.login-card input:focus {
+  outline: none;
+  border-color: #ff6b00;
+}
+
+.login-card button {
+  width: 100%;
+  padding: 14px;
+  background: #ff6b00;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-card button:hover {
+  background: #e65c00;
+}
+
+.register-link {
+  margin-top: 20px;
+}
+
+.register-link a {
+  color: #ff6b00;
+  text-decoration: none;
+  font-weight: bold;
 }

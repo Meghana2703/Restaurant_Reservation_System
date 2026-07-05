@@ -1,0 +1,58 @@
+.my-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.my-title {
+  text-align: center;
+  color: #d35400;
+  margin-bottom: 30px;
+}
+
+.reservation-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.reservation-card:hover {
+  transform: translateY(-3px);
+}
+
+.reservation-card p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.status-booked {
+  color: green;
+  font-weight: bold;
+}
+
+.status-cancelled {
+  color: red;
+  font-weight: bold;
+}
+
+.cancel-btn {
+  margin-top: 15px;
+  padding: 10px 18px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background: #c0392b;
+}
+
+.cancel-btn:disabled {
+  background: gray;
+  cursor: not-allowed;
+}

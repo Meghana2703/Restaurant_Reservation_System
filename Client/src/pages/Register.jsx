@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./Login.css";
 
 function Register() {
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -9,29 +13,31 @@ function Register() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-        }),
-      });
+      const response = await fetch(
+        "http://localhost:5000/api/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+          }),
+        }
+      );
 
       const data = await response.json();
 
       if (response.ok) {
         alert("Registration Successful");
 
-        // Clear form
         setName("");
         setEmail("");
         setPassword("");
 
-        console.log(data);
+        navigate("/login");
       } else {
         alert(data.message);
       }
@@ -42,13 +48,12 @@ function Register() {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
+    <div className="login-page">
+      <div className="login-card">
+        <h1>🍽️ Create Account</h1>
+        <p>Register to reserve your table</p>
 
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name</label>
-          <br />
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Enter Name"
@@ -56,13 +61,7 @@ function Register() {
             onChange={(e) => setName(e.target.value)}
             required
           />
-        </div>
 
-        <br />
-
-        <div>
-          <label>Email</label>
-          <br />
           <input
             type="email"
             placeholder="Enter Email"
@@ -70,13 +69,7 @@ function Register() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </div>
 
-        <br />
-
-        <div>
-          <label>Password</label>
-          <br />
           <input
             type="password"
             placeholder="Enter Password"
@@ -84,12 +77,15 @@ function Register() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </div>
 
-        <br />
+          <button type="submit">Register</button>
+        </form>
 
-        <button type="submit">Register</button>
-      </form>
+        <p className="register-link">
+          Already have an account?
+          <Link to="/login"> Login</Link>
+        </p>
+      </div>
     </div>
   );
 }

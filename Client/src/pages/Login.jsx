@@ -1,13 +1,12 @@
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
 
 function Login() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,36 +26,28 @@ function Login() {
       const data = await response.json();
 
       if (response.ok) {
-        // ✅ Save data
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
 
-        // ✅ Update context
-        login(data.user);
-
-        console.log("Saved Token:", data.token);
-
-        // ✅ Success message
         alert("Login Successful");
 
-        // ✅ Redirect
         navigate("/");
       } else {
-        alert(data.message || "Invalid credentials");
+        alert(data.message);
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
       alert("Something went wrong");
     }
   };
 
   return (
-    <div className="login-container">
-      <div className="auth-card">
-        <h2>Login</h2>
+    <div className="login-page">
+      <div className="login-card">
+        <h1>🍽️<i> La Table</i></h1>
+        <p>Login to continue your reservations</p>
 
         <form onSubmit={handleSubmit}>
-          {/* Email */}
           <input
             type="email"
             placeholder="Enter Email"
@@ -65,7 +56,6 @@ function Login() {
             required
           />
 
-          {/* Password */}
           <input
             type="password"
             placeholder="Enter Password"
@@ -74,9 +64,13 @@ function Login() {
             required
           />
 
-          {/* Button */}
           <button type="submit">Login</button>
         </form>
+
+        <p className="register-link">
+          Don't have an account?
+          <Link to="/register"> Register</Link>
+        </p>
       </div>
     </div>
   );

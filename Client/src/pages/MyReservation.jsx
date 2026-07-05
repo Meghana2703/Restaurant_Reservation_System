@@ -61,8 +61,8 @@ function MyReservations() {
   };
 
   return (
-    <div>
-      <h2>My Reservations</h2>
+    <div className="my-container">
+      <h2 className="my-title">My Reservations</h2>
 
       {reservations.length === 0 ? (
         <p>No Reservations Found</p>

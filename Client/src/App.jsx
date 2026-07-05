@@ -8,20 +8,46 @@ import BookTable from "./pages/BookTable";
 import MyReservation from "./pages/MyReservation";
 import AdminDashboard from "./pages/AdminDashboard";
 import "./App.css";
+import ProtectedRoute from "./components/ProtectedRoute";
+import AdminRoute from "./components/AdminRoute";
 
 function App() {
   return (
     <>
     <Navbar/>
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/book" element={<BookTable />} />
-      <Route path="/my-reservations" element={<MyReservation />} />
-      <Route path="/admin" element={<AdminDashboard />} />
-    </Routes>
+  <Route path="/" element={<Home />} />
+  <Route path="/home" element={<Home />} />
+  <Route path="/login" element={<Login />} />
+  <Route path="/register" element={<Register />} />
+
+  <Route
+    path="/book"
+    element={
+      <ProtectedRoute>
+        <BookTable />
+      </ProtectedRoute>
+    }
+  />
+
+  <Route
+    path="/my-reservations"
+    element={
+      <ProtectedRoute>
+        <MyReservation />
+      </ProtectedRoute>
+    }
+  />
+
+  <Route
+    path="/admin"
+    element={
+      <AdminRoute>
+        <AdminDashboard />
+      </AdminRoute>
+    }
+  />
+</Routes>
     </>
   );
 }
