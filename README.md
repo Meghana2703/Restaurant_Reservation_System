@@ -33,11 +33,11 @@ A full-stack web application that allows users to browse restaurants and make re
 - REST APIs
 
 ### Database
-- PostgreSQL / MySQL (update accordingly)
+- MongoDB
 
 ### Deployment
 - Frontend: Vercel
-- Backend: Render / Railway (if used)
+- Backend: Render
 
 ---
 
